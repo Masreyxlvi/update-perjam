@@ -29,12 +29,10 @@ function lm600() {
   document.getElementById("persen2").innerHTML = Math.round(persen) + "%";
 }
 
-var update = document.getElementById("update").addEventListener("change", Total);
+var update = document.getElementById("update").addEventListener("keydown", Total);
 
 function Total() {
-  alert(jumlahCar);
   var update2 = document.getElementById("update").value;
-  alert(update2);
   var total = parseInt(jumlahCar) + parseInt(update2);
   document.getElementById("total").innerHTML = total;
 }
