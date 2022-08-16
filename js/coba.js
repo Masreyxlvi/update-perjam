@@ -29,7 +29,7 @@ function lm600() {
   document.getElementById("persen2").innerHTML = Math.round(persen) + "%";
 }
 
-var update = document.getElementById("update").addEventListener("keydown", Total);
+// var update = document.getElementById("update").value
 
 function Total() {
   var update2 = document.getElementById("update").value;
