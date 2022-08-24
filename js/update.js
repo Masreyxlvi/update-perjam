@@ -43,7 +43,7 @@ function reset() {
   var update2 = document.getElementById("total").innerHTML;
   // alert(total);
   document.getElementById("awal2").value = akhir;
-  document.getElementById("akhir2").value = 0;
+  document.getElementById("akhir2").value = null;
   document.getElementById("hasil2").innerHTML = 0;
   document.getElementById("jumlahCar2").innerHTML = 0;
   document.getElementById("persen2").innerHTML = 0;
