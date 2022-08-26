@@ -1,28 +1,15 @@
-// function lm300() {
-//   var awal = document.getElementById("awal").value;
-//   var akhir = document.getElementById("akhir").value;
-//   var total = parseInt(akhir) - parseInt(awal);
-//   document.getElementById("hasil").innerHTML = total;
-
-//   var jumlahCar = parseInt(total) * 72;
-//   document.getElementById("jumlahCar").innerHTML = jumlahCar;
-
-//   var persen = (parseInt(jumlahCar) / 1666) * 100;
-//   document.getElementById("persen").innerHTML = Math.round(persen);
-// }
-
 var awal = 0;
 var akhir = 0;
 var hasil = 0;
 var jumlahCar = 0;
 var persen = 0;
-function lm600() {
+function lm330() {
   awal = document.getElementById("awal2").value;
   akhir = document.getElementById("akhir2").value;
   hasil = parseInt(akhir) - parseInt(awal);
   document.getElementById("hasil2").innerHTML = hasil;
 
-  jumlahCar = parseInt(hasil) * 40;
+  jumlahCar = parseInt(hasil) * 72;
   document.getElementById("jumlahCar2").innerHTML = jumlahCar;
 
   persen = (parseInt(jumlahCar) / 1666) * 100;

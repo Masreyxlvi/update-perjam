@@ -3,148 +3,108 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Masreyxlvi | Update Per Jam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
-
-    <style>
-      body{
-        color: red;
-      }
-    </style>
+    <title>Update Per Jam</title>
+    <!-- link bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- link icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
+  <style>
+    :root {
+      --gradient: linear-gradient(319.6deg, rgba(243, 0, 79, 1) 20.5%, rgba(255, 236, 68, 1) 110.9%);
+    }
+
+    body {
+      height: 100vh;
+      background-color: #eaeaea;
+      background-image: var(--gradient);
+      background-size: 200%;
+      animation: gradient 20s infinite alternate;
+      font-family: roboto;
+    }
+
+    .container {
+      height: 70vh;
+      display: flex;
+      align-items: center;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: left;
+      }
+
+      100% {
+        background-position: right;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: crimson;
+      font-weight: 600px;
+    }
+    a:hover {
+      font-weight: bold;
+      color: crimson;
+      transition: all 0.3 ease-in-out;
+    }
+
+    @media (min-width: 992px) {
+      body {
+        height: 94vh;
+      }
+      .container {
+        height: 60vh;
+      }
+      .card {
+        padding: 20;
+      }
+    }
+  </style>
   <body>
-    
-    <div class="container-fluid shadow">
-      <div class="row align-items-center">
-        <div class="card">
-          <div class="card-title mt-4 text-center">
-            <h2 class="text-danger">Update Per Jam</h2>
-          </div>
-          <div class="card-body">
-            <p class="text-center">
-              <a class="btn btn-outline-danger " data-bs-toggle="collapse" href="#lm300" role="button" aria-expanded="false" aria-controls="lm300"> 300ml </a>
-              <a class="btn btn-outline-danger " data-bs-toggle="collapse" href="#lm600" role="button" aria-expanded="false" aria-controls="lm600"> 600ml </a>
-              <a class="btn btn-outline-danger " data-bs-toggle="collapse" href="#lm600" role="button" aria-expanded="false" aria-controls="lm600"> 1500ml </a>
-              <a class="btn btn-outline-danger " data-bs-toggle="collapse" href="#lm600" role="button" aria-expanded="false" aria-controls="lm600"> 5000ml </a>
-            </p>
-            <!-- 300 ml -->
-            <div class="collapse mb-4" id="lm300">
-              <div class="card">
-                <div class="card-title text-center mt-2">
-                  <h4>Le Minerale 300ml</h4>
-                </div>
-                <div class="card-body">
-                  <div class="row">
-                    <label for="awal" class="col-lg-2 fw-4 align-items-center">Angka Awal</label>
-                    <div class="col-lg-3">
-                      <input type="number" id="awal" class="form-control" placeholder="0 " aria-label="First name" />
-                    </div>
-                    <label for="awal" class="col-lg-1"></label>
-                    <label for="awal" class="col-lg-2">Angka Akhir</label>
-                    <div class="col-lg-3">
-                      <input type="number" id="akhir" class="form-control" placeholder="0" aria-label="Last name" />
-                    </div>
-                    <div class="d-grid gap-2 mt-2">
-                      <button class="btn btn-outline-danger" onclick="lm300()">submit</button>
-                    </div>
-                  </div>
-                  <div class="row mt-4 justity-content-start">
-                    <table class="table fs-4 text-danger">
-                      <thead>
-                        <tr align="center">
-                          <th scope="col" colspan="4">Result</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">Jumlah Pallet</th>
-                          <td id="hasil">0</td>
-                        </tr>
-                        <tr>
-                          <th scope="row" align="start">Jumlah Car</th>
-                          <td id="jumlahCar">0</td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Persentase</th>
-                          <td id="persen">0</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end 300 ml -->
-            <!-- 600 ml -->
-            <div class="collapse" id="lm600">
-              <div class="card">
-              <div class="card-title text-center mt-2">
-                <h4>Le Minerale 600ml</h4>
-              </div>
-              <div class="card-body">
-                <div class="row">
-                  <label for="awal" class="col-lg-2 fw-4 align-items-center">Angka Awal</label>
-                  <div class="col-lg-3">
-                    <input type="number" id="awal2" class="form-control" placeholder="0 " aria-label="First name" />
-                  </div>
-                  <label for="awal" class="col-lg-2">Angka Akhir</label>
-                  <div class="col-lg-3">
-                    <input type="number" id="akhir2" class="form-control" placeholder="0" aria-label="Last name" />
-                  </div>
-                  <div class="d-grid gap-2 mt-2">
-                    <button class="btn btn-outline-danger" onclick="lm600()">submit</button>
-                  </div>
-                </div>
-                <div class="row mt-4 justity-content-start">
-                  <table class="table fs-4 text-danger">
-                    <thead>
-                      <tr align="center">
-                        <th scope="col" colspan="4">Result</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Jumlah Pallet</th>
-                        <td id="hasil2" align="end">0</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Persentase</th>
-                        <td id="persen2" align="end">0</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" align="start">Jumlah Car</th>
-                        <td id="jumlahCar2" align="end">0</td>
-                      </tr>
-                      <tfoot class="table-group-divider">
-                        <tr>
-                          <th scope="row">Jumlah Update </th>
-                          <td><input type="number" name="update" id="update" class="form-control"></td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td align="end "><button type="submit" class="btn btn-outline-danger" onclick="Total()">Submit</button></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Total</th>
-                          <td align="end" id="total">0</td>
-                        </tr>
-                      </tfoot>
-                    </tbody>
-                  </table>
-                  <div class="d-grid gap-2 mt-2">
-                    <button class="btn btn-outline-danger" type="submit" onclick="reset()">Reset</button>
-                  </div>
-                </div>
-              
-              </div>
+    <div class="container-fluid text-center text-white mt-5">
+      <h1>Update Per Jam</h1>
+      <p>PT Tirta Fresindo Jaya Mayora Group</p>
+    </div>
+    <div class="container mb-3">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body">
+              <a href="le_minerale/lm_330ml.html" class="fs-3 text-uppercase">le minerale 330Ml</a>
             </div>
           </div>
-          <!-- end 600 ml -->
+        </div>
+        <div class="col-lg-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body">
+              <a href="le_minerale/lm_600ml.html" class="fs-3 text-uppercase">le minerale 600Ml</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body">
+              <a href="le_minerale/lm_1500ml.html" class="fs-3 text-uppercase">le minerale 1500Ml</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body">
+              <a href="le_minerale/lm_5000ml.html" class="fs-3 text-uppercase">le minerale 5000Ml</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <script src="js/update.js"></script>
+    <footer class="text-white text-center">
+      <p style="font-family: 'Dancing Script', cursive">Created With <i class="bi bi-suit-heart-fill text-dark"></i> By <a href="https://www.instagram.com/masreyxlvi/" target="_blank" class="text-white">Masreyxlvi</a></p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Masreyxlvi | Update Per Jam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+    <style>
+      body{
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="container-fluid shadow">
+      <div class="row align-items-center">
+        <div class="card">
+          <div class="card-title mt-4 text-center">
+            <h2 class="text-danger">Update Per Jam</h2>
+            <p>Le Minerale 1500ml</p>
+          </div>
+            <!-- 1500 ml -->
+            <div id="lm1500">
+              <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <label for="awal" class="col-lg-2 fw-4 align-items-center">No Pallet Awal</label>
+                  <div class="col-lg-3">
+                    <input type="number" id="awal2" class="form-control" placeholder="0 " aria-label="First name" required />
+                  </div>
+                  <label for="awal" class="col-lg-2">No Paller Akhir</label>
+                  <div class="col-lg-3">
+                    <input type="number" id="akhir2" class="form-control" placeholder="0" aria-label="Last name" required/>
+                  </div>
+                  <div class="d-grid gap-2 mt-2">
+                    <button class="btn btn-outline-danger" onclick="lm1500()">submit</button>
+                  </div>
+                </div>
+                <div class="row mt-4 justity-content-start">
+                  <table class="table fs-4 text-danger">
+                    <thead>
+                      <tr align="center">
+                        <th scope="col" colspan="4">Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Jumlah Pallet</th>
+                        <td id="hasil2" align="end">0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Persentase</th>
+                        <td id="persen2" align="end">0</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" align="start">Jumlah Car</th>
+                        <td id="jumlahCar2" align="end">0</td>
+                      </tr>
+                      <tfoot class="table-group-divider">
+                        <tr>
+                          <th scope="row">Jumlah Update </th>
+                          <td><input type="number" name="update" id="update" class="form-control"></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td align="end "><button type="submit" class="btn btn-outline-danger" onclick="Total()">Submit</button></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Total</th>
+                          <td align="end" id="total">0</td>
+                        </tr>
+                      </tfoot>
+                    </tbody>
+                  </table>
+                  <div class="d-grid gap-2 mt-2">
+                    <button class="btn btn-outline-danger" type="submit" onclick="reset()">Reset</button>
+                  </div>
+                </div>
+              
+              </div>
+            </div>
+            <div class="text-center fs-4 mt-3 mb-3">
+              <a href="../index.html" class="btn btn-outline-danger" style="text-decoration: none;">Back To Home</a>
+            </div>
+          </div>
+          <!-- end 1500 ml -->
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/setengah_liter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>
