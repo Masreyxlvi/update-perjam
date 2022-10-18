@@ -12,7 +12,7 @@ function lm5000() {
   jumlahCar = parseInt(hasil) * 27;
   document.getElementById("jumlahCar2").innerHTML = jumlahCar;
 
-  persen = (parseInt(jumlahCar) / 1666) * 100;
+  persen = (parseInt(jumlahCar) / 1500) * 100;
   document.getElementById("persen2").innerHTML = Math.round(persen) + "%";
 }
 
