@@ -1,96 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Masreyxlvi | Update Per Jam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
 
-    <style>
-      body{
-        color: red;
-      }
-    </style>
-  </head>
-  <body>
-    
-    <div class="container-fluid shadow">
-      <div class="row align-items-center">
-        <div class="card">
-          <div class="card-title mt-4 text-center">
-            <h2 class="text-danger">Update Per Jam</h2>
-            <p>Le Minerale 1500ml</p>
-          </div>
-            <!-- 1500 ml -->
-            <div id="lm1500">
-              <div class="card">
-              <div class="card-body">
-                <div class="row">
-                  <label for="awal" class="col-lg-2 fw-4 align-items-center">No Pallet Awal</label>
-                  <div class="col-lg-3">
-                    <input type="number" id="awal2" class="form-control" placeholder="0 " aria-label="First name" required />
-                  </div>
-                  <label for="awal" class="col-lg-2">No Paller Akhir</label>
-                  <div class="col-lg-3">
-                    <input type="number" id="akhir2" class="form-control" placeholder="0" aria-label="Last name" required/>
-                  </div>
-                  <div class="d-grid gap-2 mt-2">
-                    <button class="btn btn-outline-danger" onclick="lm1500()">submit</button>
-                  </div>
-                </div>
-                <div class="row mt-4 justity-content-start">
-                  <table class="table fs-4 text-danger">
-                    <thead>
-                      <tr align="center">
-                        <th scope="col" colspan="4">Result</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Jumlah Pallet</th>
-                        <td id="hasil2" align="end">0</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Persentase</th>
-                        <td id="persen2" align="end">0</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" align="start">Jumlah Car</th>
-                        <td id="jumlahCar2" align="end">0</td>
-                      </tr>
-                      <tfoot class="table-group-divider">
-                        <tr>
-                          <th scope="row">Jumlah Update </th>
-                          <td><input type="number" name="update" id="update" class="form-control"></td>
-                        </tr>
-                        <tr>
-                          <td></td>
-                          <td align="end "><button type="submit" class="btn btn-outline-danger" onclick="Total()">Submit</button></td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Total</th>
-                          <td align="end" id="total">0</td>
-                        </tr>
-                      </tfoot>
-                    </tbody>
-                  </table>
-                  <div class="d-grid gap-2 mt-2">
-                    <button class="btn btn-outline-danger" type="submit" onclick="reset()">Reset</button>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Masreyxlvi | Update Per Jam</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+  <style>
+    body {
+      color: red;
+
+    }
+    P{
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid shadow">
+    <div class="row align-items-center">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Update Per Jam 330 ml</h3>
+          <a href="../index.html" class="btn btn-outline-danger">Back to home</a>
+        </div>
+        <div class="card-body">
+          <form id="formTransaksi">
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <select class="form-select Shift" id="Shift" name="Shift">
+                      <!-- <option selected disabled>---Shift----</option> -->
+                      <option value="1">Shift 1</option>
+                      <option value="2">Shift 2</option>
+                      <option value="3">Shift 3</option>
+                    </select>
+                    <label for="tb-email">Pilih Shift</label>
                   </div>
                 </div>
-              
+                <div class="col-md-6">
+                  <div class="form-floating mb-3">
+                    <select class="form-select line" id="line" name="line">
+                      <!-- <option selected disabled>---Line----</option> -->
+                      <option value="3">Line 3</option>
+                      <option value="4">Line 4</option>
+                    </select>
+                    <label for="tb-email">Pilih Line</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="form-floating">
+                    <select class="form-select sku" id="sku" name="sku">
+                      <option value="Reguler">Reguler</option>
+                      <option value="Phill_Reguler">Phill Reguler</option>
+                      <option value="Phill_Promo">Phill Promo</option>
+                    </select>
+                    <label for="tb-email">Pilih SKU</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="form-floating mb-3">
+                    <input type="date" class="form-control" id="input_tgl" name="input_tgl" required
+                      placeholder="Enter Name here" />
+                    <label for="input_tgl">Tanggal </label>
+                  </div>
+                </div>
+                <hr>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-1">
+                    <input type="time" class="form-control" id="jam_awal" name="jam_awal" required
+                      placeholder="Enter Name here" />
+                    <label for="jam_awal">Dari Jam </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-1">
+                    <input type="time" class="form-control" id="jam_akhir" name="jam_akhir" required
+                      placeholder="Enter Name here" />
+                    <label for="jam_akhir">Sampai Jam </label>
+                  </div>
+                </div>
+                <hr>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-1">
+                    <input type="number" class="form-control" id="awal" name="awal" required
+                      placeholder="Enter Name here" />
+                    <label for="awal">No Pallet Awal </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="akhir" name="akhir" required
+                      placeholder="Enter Name here" />
+                    <label for="akhir">No Pallet Akhir </label>
+                  </div>
+                </div>
+                <hr>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="receh" name="receh"
+                      placeholder="Enter Name here" />
+                    <label for="receh">Receh </label>
+                  </div>
+                </div>
+            </div>
+            <div class="col-12">
+              <div class="d-md-flex align-items-center mt-3">
+                <div class="ms-auto mt-3 mt-md-0">
+                  <button type="button" id="delete" class="
+                      btn btn-danger
+                      font-weight-medium 
+                      rounded-pill
+                      px-4
+                    ">
+                    <div class="d-flex align-items-center">
+                      <i data-feather="send" class="feather-sm fill-white me-2"></i>
+                      Reset
+                    </div>
+                  </button>
+                  <button type="submit" class="
+                      btn btn-info
+                      font-weight-medium
+                      rounded-pill
+                      px-4
+                    ">
+                    <div class="d-flex align-items-center">
+                      <i data-feather="send" class="feather-sm fill-white me-2"></i>
+                      Submit
+                    </div>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="text-center fs-4 mt-3 mb-3">
-              <a href="../index.html" class="btn btn-outline-danger" style="text-decoration: none;">Back To Home</a>
-            </div>
-          </div>
-          <!-- end 1500 ml -->
         </div>
+        </form>
       </div>
     </div>
+  </div>
+  </div>
 
-    <script src="../js/setengah_liter.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  </body>
+  <div class="card">
+    <div class="card-header">
+      <h3>Result</h3>
+    </div>
+    <div class="card-body">
+      <div class="row text-center">
+        <div class="col-md-12">
+            <div class="result">
+
+            </div>
+            <div class="col-md-6 mt-3 text-start">
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="no_hp" name="no_hp"
+                  placeholder="Enter Name here" />
+                <label for="no_hp">Masukan No Wa </label>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <button type="button" id="wa" class="
+                      btn btn-success
+                      font-weight-medium 
+                      rounded-pill
+                      px-4
+                    ">
+                    <div class="d-flex align-items-center">
+                      <i data-feather="send" class="feather-sm fill-white me-2"></i>
+                      Kirim Wa
+                    </div>
+                  </button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/jquery.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script>
+    // method
+    function insert() {
+      const form = $("#formTransaksi").serializeArray();
+      let dataTransaksi = JSON.parse(localStorage.getItem("dataTransaksi")) || [];
+
+      let newData = {};   
+
+      form.forEach(function (item, index) {
+        let name = item["name"];
+        let value = name === 'id' ? Number(item['value']):item['value']
+        newData[name] = value;
+      });
+      // console.log(newData)
+      localStorage.setItem("dataTransaksi", JSON.stringify([...dataTransaksi, newData]));
+      return newData;
+    }
+
+    function showData(dataTransaksi) {
+      var row = "";
+      
+      var awal = 0;
+      var akhir = 0;
+      var hasil = 0;
+      var jumlahCar = 0;
+      var persen = 0;
+      var total = 0;
+
+      var shift = $('#Shift').val();
+      var line = $('#line').val();
+      var sku = $('#sku').val();
+      if(sku == "Phill_Promo"){
+        sku = "Phill Promo"
+      }
+      if(sku == "Phill_Reguler"){
+        sku = "Phill Reguler"
+      }
+      var tgl = "";   
+      if (dataTransaksi.length == 0) {
+        return (row = `<h1>
+              Silahkan Isi Form Diatas
+            </h1>`);
+      }
+
+      // Memeriksa apakah elemen dengan id "input_tgl" sudah terdefinisi
+      const tanggalInput = document.getElementById("input_tgl");
+      if (tanggalInput) {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const tanggal = new Date(tanggalInput.value);
+        const tanggalFormat = tanggal.toLocaleDateString('id-ID', options);
+        row += `<h4 id="title">Hasil Produksi Shift ${shift}</h4>`;
+        row += `<h4 id="line_running"><i>Line ${line}</i></h4>`;
+        row += `<h4 id="tgl_produksi">${tanggalFormat}</h4>`;
+      } else {
+        row += `<h4>Hasil Produksi Shift ${shift}</h4>`;
+        row += `<h4><i>Line 5</i></h4>`;
+      }
+
+      row += `<br/>`;
+      row += `<i id="sku_running">le Minerale 1500 ml ${sku}</i>`;
+      row += `<hr/>`;
+  
+      // row += `<br/>`;
+      
+      dataTransaksi.forEach(function (item, index) {
+        hasil = item['akhir'] - item['awal'];
+        if(item['receh']){
+          jumlahCar =(hasil * 33) + Number(item['receh']);
+        }else{
+          jumlahCar = hasil * 33;
+        }
+        persen = Math.round((jumlahCar / 1666) * 100);
+        total += Number(jumlahCar);
+        row += `<p id="hasil_produksi">${item["jam_awal"]}-${item["jam_akhir"]} = ${jumlahCar} car ${persen}%</p>`;
+      });
+      // alert(total)
+      
+      // alert(total)
+      row += `<b id='total_produksi'>${total} car</b>`
+      row.replace('${total}', total);
+
+      return row;
+    }
+
+
+    let dataTansaksi;
+    $(function () {
+      // initialize
+      dataTransaksi  = JSON.parse(localStorage.getItem("dataTransaksi")) || [];
+
+      $(".result").html(showData(dataTransaksi));
+      // events
+      $("#formTransaksi").on("submit", function (e) {
+        e.preventDefault();
+        dataTransaksi.push(insert());
+
+        $(".result").html(showData(dataTransaksi));
+        var akhir = document.getElementById("akhir").value;
+        var jamAkhir = document.getElementById("jam_akhir").value;
+        // var update2 = document.getElementById("total").innerHTML;
+        // alert(total);
+        document.getElementById("awal").value = akhir;
+        document.getElementById("akhir").value = null;
+        document.getElementById("jam_awal").value = jamAkhir;
+        document.getElementById("jam_akhir").value = null;
+
+        
+      });
+
+      $("#delete").on("click", function (e) {
+        e.preventDefault();
+        if (confirm("Hapus Semua Data?")) {
+          dataTransaksi = filterTransaksi = [];
+          localStorage.removeItem("dataTransaksi");
+          $(".result").html(showData(dataTransaksi));
+        }
+      });
+      $("#wa").on("click", function () {
+        var title = $('#title').text();
+        var line = $('#line_running').text();
+        var tgl_produksi= $('#tgl_produksi').text();
+        var total_produksi= $('#total_produksi').text();
+        var no_hp= $('#no_hp').val();
+        var sku = $('#sku_running').text();
+        var hasilProduksi = "";
+        $('p#hasil_produksi').each(function() {
+          hasilProduksi += $(this).text() + "%0a";
+        });
+        var url =  "https://wa.me/+62"+no_hp+"?text=" 
+        +"*"+title+"*"+"%0a" 
+        +"_*"+line+"*_"+"%0a"
+        +"*"+tgl_produksi+"*"+"%0a"+"%0a"  
+
+        +"_"+ sku +"_" + "*" + total_produksi + "*" + "%0a"+"%0a" 
+        +hasilProduksi 
+
+        window.open(url, "_blank").focus();
+      });
+
+
+    });
+
+
+  </script>
+
+
+</body>
+
 </html>
