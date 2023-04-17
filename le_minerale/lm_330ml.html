@@ -259,7 +259,7 @@
       // alert(total)
       
       // alert(total)
-      row += `<b id='total_produksi'>${total} car</b>`
+      row += `<b id='total_produksi'> *${total} car*</b>`
       row.replace('${total}', total);
 
       return row;
@@ -314,7 +314,7 @@
         +"_*"+line+"*_"+"%0a"
         +"*"+tgl_produksi+"*"+"%0a"+"%0a"  
 
-        +"_"+ sku +"_ " + " *" + total_produksi + "*" + "%0a"+"%0a" 
+        +"_"+ sku +"_" +  total_produksi + "%0a"+"%0a" 
         +hasilProduksi 
 
         window.open(url, "_blank").focus();
