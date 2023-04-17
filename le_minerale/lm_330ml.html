@@ -185,7 +185,7 @@
     // method
     function insert() {
       const form = $("#formTransaksi").serializeArray();
-      let dataTransaksi = JSON.parse(localStorage.getItem("dataTransaksi")) || [];
+      let lm330 = JSON.parse(localStorage.getItem("lm330")) || [];
 
       let newData = {};   
 
@@ -195,11 +195,11 @@
         newData[name] = value;
       });
       // console.log(newData)
-      localStorage.setItem("dataTransaksi", JSON.stringify([...dataTransaksi, newData]));
+      localStorage.setItem("lm330", JSON.stringify([...lm330, newData]));
       return newData;
     }
 
-    function showData(dataTransaksi) {
+    function showData(lm330) {
       var row = "";
       
       var awal = 0;
@@ -219,7 +219,7 @@
         sku = "Phill Reguler"
       }
       var tgl = "";   
-      if (dataTransaksi.length == 0) {
+      if (lm330.length == 0) {
         return (row = `<h1>
               Silahkan Isi Form Diatas
             </h1>`);
@@ -245,7 +245,7 @@
   
       // row += `<br/>`;
       
-      dataTransaksi.forEach(function (item, index) {
+      lm330.forEach(function (item, index) {
         hasil = item['akhir'] - item['awal'];
         if(item['receh']){
           jumlahCar =(hasil * 72) + Number(item['receh']);
@@ -269,15 +269,15 @@
     let dataTansaksi;
     $(function () {
       // initialize
-      dataTransaksi  = JSON.parse(localStorage.getItem("dataTransaksi")) || [];
+      lm330  = JSON.parse(localStorage.getItem("lm330")) || [];
 
-      $(".result").html(showData(dataTransaksi));
+      $(".result").html(showData(lm330));
       // events
       $("#formTransaksi").on("submit", function (e) {
         e.preventDefault();
-        dataTransaksi.push(insert());
+        lm330.push(insert());
 
-        $(".result").html(showData(dataTransaksi));
+        $(".result").html(showData(lm330));
         var akhir = document.getElementById("akhir").value;
         var jamAkhir = document.getElementById("jam_akhir").value;
         // var update2 = document.getElementById("total").innerHTML;
@@ -293,9 +293,9 @@
       $("#delete").on("click", function (e) {
         e.preventDefault();
         if (confirm("Hapus Semua Data?")) {
-          dataTransaksi = filterTransaksi = [];
-          localStorage.removeItem("dataTransaksi");
-          $(".result").html(showData(dataTransaksi));
+          lm330 = filterTransaksi = [];
+          localStorage.removeItem("lm330");
+          $(".result").html(showData(lm330));
         }
       });
       $("#wa").on("click", function () {
