@@ -197,6 +197,7 @@
         let value = name === 'id' ? Number(item['value']):item['value']
         newData[name] = value;
       });
+      
       // console.log(newData)
       localStorage.setItem("lm600", JSON.stringify([...lm600, newData]));
       return newData;
@@ -230,6 +231,9 @@
 
       // Memeriksa apakah elemen dengan id "input_tgl" sudah terdefinisi
       const tanggalInput = document.getElementById("input_tgl");
+   
+
+
       if (tanggalInput) {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const tanggal = new Date(tanggalInput.value);
@@ -249,6 +253,8 @@
       // row += `<br/>`;
       
       lm600.forEach(function (item, index) {
+        
+
         hasil = item['akhir'] - item['awal'];
         if(item['receh']){
           jumlahCar =(hasil * 40) + Number(item['receh']);
@@ -257,11 +263,12 @@
         }
         persen = Math.round((jumlahCar / 1666) * 100);
         total += Number(jumlahCar);
-        row += `<p id="hasil_produksi">${item["jam_awal"]}-${item["jam_akhir"]} = ${jumlahCar} car ${persen}%</p>`;
+
+        var jamAwal = item.jam_awal.replace(':', '.'); // Mengganti ":" dengan "."
+        var jamAkhir = item.jam_akhir.replace(':', '.'); // Mengganti ":" dengan "."
+        row += `<p id="hasil_produksi">${jamAwal}-${jamAkhir} = ${jumlahCar} car ${persen}%</p>`;
       });
-      // alert(total)
-      
-      // alert(total)
+
       row += `<b id='total_produksi'> *${total} car*</b>`
       row.replace('${total}', total);
 
@@ -288,7 +295,19 @@
         document.getElementById("awal").value = akhir;
         document.getElementById("akhir").value = null;
         document.getElementById("jam_awal").value = jamAkhir;
-        document.getElementById("jam_akhir").value = null;
+        var jamAkhir = document.getElementById("jam_akhir").value;
+        var jamAkhirArray = jamAkhir.split(":"); // Memisahkan jam, menit, dan detik menjadi array
+
+        var jamAkhirBaru = parseInt(jamAkhirArray[0]) + 1; // Menambahkan 1 jam pada jamAkhir
+        jamAkhirArray[0] = jamAkhirBaru.toString(); // Mengubah jamAkhir yang baru menjadi string
+
+        // Menggabungkan kembali jam, menit, dan detik menjadi string dengan format yang sama
+        var jamAkhirString = jamAkhirArray.join(":");
+
+        // Mengatur value dari input dengan id "jam_akhir" menjadi jamAkhir yang baru
+        document.getElementById("jam_akhir").value = jamAkhirString;
+        document.getElementById("receh").value = null;
+
 
         
       });
