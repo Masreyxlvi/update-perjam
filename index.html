@@ -18,18 +18,16 @@
     }
 
     body {
-      height: 100vh;
+      height: 100%;
+      font-family: roboto;
       background-color: #eaeaea;
       background-image: var(--gradient);
-      background-size: 200%;
+      background-size: cover;
       animation: gradient 20s infinite alternate;
-      font-family: roboto;
     }
-
-    .container {
-      height: 70vh;
-      display: flex;
-      align-items: center;
+    .container-fluid {
+      height: 100vh;
+      margin: 5rem auto;
     }
 
     @keyframes gradient {
@@ -46,63 +44,71 @@
       color: crimson;
       font-weight: 600px;
     }
+    .card:hover,
     a:hover {
       font-weight: bold;
-      color: crimson;
+      color: #fff;
+      background-color: crimson;
       transition: all 0.3 ease-in-out;
-    }
-
-    @media (min-width: 992px) {
-      body {
-        height: 94vh;
-      }
-      .container {
-        height: 60vh;
-      }
-      .card {
-        padding: 20;
-      }
     }
   </style>
   <body>
-    <div class="container-fluid text-center text-white mt-5">
+    <div class="container-fluid text-center text-white">
       <h1>Update Per Jam</h1>
       <p>PT Tirta Fresindo Jaya Mayora Group</p>
-    </div>
-    <div class="container mb-3">
-      <div class="row justify-content-center text-center">
-        <div class="col-lg-3 mb-3 shadow-sm">
+      <div class="row d-flex align-items-center justify-content-center text-center">
+        <div class="col-md-3 mb-3 shadow-sm">
           <div class="card">
             <div class="card-body">
-              <a href="le_minerale/lm_330ml.html" class="fs-3 text-uppercase">le minerale 330Ml</a>
+              <a href="le_minerale/line_satu.html" class="fs-3 text-uppercase">line 1</a>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 mb-3 shadow-sm">
+        <div class="col-md-3 mb-3 shadow-sm">
           <div class="card">
             <div class="card-body">
-              <a href="le_minerale/lm_600ml.html" class="fs-3 text-uppercase">le minerale 600Ml</a>
+              <a href="le_minerale/line_dua.html" class="fs-3 text-uppercase">line 2</a>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 mb-3 shadow-sm">
+        <div class="col-md-3 mb-3 shadow-sm">
           <div class="card">
             <div class="card-body">
-              <a href="le_minerale/lm_1500ml.html" class="fs-3 text-uppercase">le minerale 1500Ml</a>
+              <a href="le_minerale/line_tiga.html" class="fs-3 text-uppercase">line 3</a>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 mb-3 shadow-sm">
+        <div class="col-md-3 mb-3 shadow-sm">
           <div class="card">
-            <div class="card-body">
-              <a href="le_minerale/lm_5000ml.html" class="fs-3 text-uppercase">le minerale 5000Ml</a>
-            </div>
+            <div class="card-body"><a href="le_minerale/line_empat.html" class="fs-3 text-uppercase">line 4</a></div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body"><a href="le_minerale/line_lima.html" class="fs-3 text-uppercase">line 5</a></div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body"><a href="le_minerale/line_enam.html" class="fs-3 text-uppercase">line 6</a></div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body"><a href="le_minerale/line_tujuh.html" class="fs-3 text-uppercase">line 7</a></div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-3 shadow-sm">
+          <div class="card">
+            <div class="card-body"><a href="le_minerale/line_delapan.html" class="fs-3 text-uppercase">line 8</a></div>
           </div>
         </div>
       </div>
     </div>
+    <!-- <div class="container mb-3">
+    </div> -->
 
-    <footer class="text-white text-center">
+    <footer class="text-white text-center p-3">
       <p style="font-family: 'Dancing Script', cursive">Created With <i class="bi bi-suit-heart-fill text-dark"></i> By <a href="https://www.instagram.com/masreyxlvi/" target="_blank" class="text-white">Masreyxlvi</a></p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

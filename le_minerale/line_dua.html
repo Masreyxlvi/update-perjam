@@ -24,7 +24,7 @@
     <div class="row align-items-center">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Update Per Jam 330 ml</h3>
+          <h3 class="card-title">Update Per Jam Line 2</h3>
           <a href="../index.html" class="btn btn-outline-danger">Back to home</a>
         </div>
         <div class="card-body">
@@ -34,26 +34,17 @@
                   <div class="form-floating mb-3">
                     <select class="form-select Shift" id="Shift" name="Shift">
                       <!-- <option selected disabled>---Shift----</option> -->
-                      <option value="1">Shift 1</option>
-                      <option value="2">Shift 2</option>
-                      <option value="3">Shift 3</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
                     </select>
                     <label for="tb-email">Pilih Shift</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-floating mb-3">
-                    <select class="form-select line" id="line" name="line">
-                      <!-- <option selected disabled>---Line----</option> -->
-                      <option value="3">Line 3</option>
-                      <option value="4">Line 4</option>
-                    </select>
-                    <label for="tb-email">Pilih Line</label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-3">
                   <div class="form-floating">
                     <select class="form-select sku" id="sku" name="sku">
+                      <option value="Promo">Promo</option>
                       <option value="Reguler">Reguler</option>
                       <option value="Phill_Reguler">Phill Reguler</option>
                       <option value="Phill_Promo">Phill Promo</option>
@@ -184,22 +175,23 @@
   <script>
     // method
     function insert() {
-      const form = $("#formTransaksi").serializeArray();
-      let lm330 = JSON.parse(localStorage.getItem("lm330")) || [];
+        const form = $("#formTransaksi").serializeArray();
+        let line2 = JSON.parse(localStorage.getItem("line2")) || [];
 
-      let newData = {};   
+        let newData = {};   
 
-      form.forEach(function (item, index) {
-        let name = item["name"];
-        let value = name === 'id' ? Number(item['value']):item['value']
-        newData[name] = value;
-      });
-      // console.log(newData)
-      localStorage.setItem("lm330", JSON.stringify([...lm330, newData]));
-      return newData;
+        form.forEach(function (item, index) {
+          let name = item["name"];
+          let value = name === 'id' ? Number(item['value']):item['value']
+          newData[name] = value;
+        });
+        
+        // console.log(newData)
+        localStorage.setItem("line2", JSON.stringify([...line2, newData]));
+        return newData;
     }
 
-    function showData(lm330) {
+    function showData(line2) {
       var row = "";
       
       var awal = 0;
@@ -210,7 +202,6 @@
       var total = 0;
 
       var shift = $('#Shift').val();
-      var line = $('#line').val();
       var sku = $('#sku').val();
       if(sku == "Phill_Promo"){
         sku = "Phill Promo"
@@ -219,7 +210,7 @@
         sku = "Phill Reguler"
       }
       var tgl = "";   
-      if (lm330.length == 0) {
+      if (line2.length == 0) {
         return (row = `<h1>
               Silahkan Isi Form Diatas
             </h1>`);
@@ -227,57 +218,99 @@
 
       // Memeriksa apakah elemen dengan id "input_tgl" sudah terdefinisi
       const tanggalInput = document.getElementById("input_tgl");
+   
+
+
       if (tanggalInput) {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const tanggal = new Date(tanggalInput.value);
         const tanggalFormat = tanggal.toLocaleDateString('id-ID', options);
         row += `<h4 id="title">Hasil Produksi Shift ${shift}</h4>`;
-        row += `<h4 id="line_running"><i>Line ${line}</i></h4>`;
+        row += `<h4 id="line_running"><i>LINE 2</i></h4>`;
         row += `<h4 id="tgl_produksi">${tanggalFormat}</h4>`;
       } else {
         row += `<h4>Hasil Produksi Shift ${shift}</h4>`;
-        row += `<h4><i>Line 5</i></h4>`;
+        row += `<h4><i>LINE 2</i></h4>`;
       }
 
       row += `<br/>`;
-      row += `<i id="sku_running">le Minerale 330 ml ${sku}</i>`;
+      row += `<i id="sku_running">le Minerale 600ml ${sku}</i>`;
       row += `<hr/>`;
   
       // row += `<br/>`;
-      
-      lm330.forEach(function (item, index) {
+      var formatTotal = ""
+      line2.forEach(function (item, index) {
         hasil = item['akhir'] - item['awal'];
         if(item['receh']){
-          jumlahCar =(hasil * 72) + Number(item['receh']);
+          jumlahCar =(hasil * 40) + Number(item['receh']);
         }else{
-          jumlahCar = hasil * 72;
+          jumlahCar = hasil * 40;
         }
         persen = Math.round((jumlahCar / 1666) * 100);
         total += Number(jumlahCar);
-        row += `<p id="hasil_produksi">${item["jam_awal"]}-${item["jam_akhir"]} = ${jumlahCar} car ${persen}%</p>`;
+        var formatJumlahCar = jumlahCar.toLocaleString("en-US").replace(',','.');
+         formatTotal = total.toLocaleString("en-US").replace(',','.');
+
+        var jamAwal = item.jam_awal.replace(':', '.'); // Mengganti ":" dengan "."
+        var jamAkhir = item.jam_akhir.replace(':', '.'); // Mengganti ":" dengan "."
+        row += `
+          <p id="hasil_produksi_${index}" class="hasil_produksi">
+            ${jamAwal}-${jamAkhir} = ${formatJumlahCar} car ${persen}% 
+            <button onclick="deleteData(${index})" class="btn btn-danger btn-sm mb-2">
+            Hapus
+            </button>
+          </p>`;
+
       });
-      // alert(total)
-      
-      // alert(total)
-      row += `<b id='total_produksi'> *${total} car*</b>`
+
+      row += `<b id='total_produksi'> *${formatTotal} car*</b>`
       row.replace('${total}', total);
 
       return row;
     }
 
+    function deleteData(index) {
+      const pElement = document.getElementById(`hasil_produksi_${index}`);
+      if (pElement) {
+        pElement.remove(); // Menghapus tag "p" berdasarkan id-nya
+
+        // Menghapus data dari line2 berdasarkan index
+        line2.splice(index, 1);
+        localStorage.setItem("line2", JSON.stringify(line2));
+
+        updateTotal(); // Memperbarui total setelah penghapusan
+      }
+    }
+
+    function updateTotal() {
+      var newTotal = 0;
+
+      line2.forEach(function (item) {
+        var hasil = item['akhir'] - item['awal'];
+        var jumlahCar = item['receh'] ? (hasil * 40) + Number(item['receh']) : hasil * 40;
+        newTotal += jumlahCar;
+      });
+
+      var totalElement = document.getElementById('total_produksi');
+      if (totalElement) {
+        totalElement.textContent = ` *${newTotal.toLocaleString('en-US')} car*`;
+      }
+    }
+
+
 
     let dataTansaksi;
     $(function () {
       // initialize
-      lm330  = JSON.parse(localStorage.getItem("lm330")) || [];
+      line2  = JSON.parse(localStorage.getItem("line2")) || [];
 
-      $(".result").html(showData(lm330));
+      $(".result").html(showData(line2));
       // events
       $("#formTransaksi").on("submit", function (e) {
         e.preventDefault();
-        lm330.push(insert());
+        line2.push(insert());
 
-        $(".result").html(showData(lm330));
+        $(".result").html(showData(line2));
         var akhir = document.getElementById("akhir").value;
         var jamAkhir = document.getElementById("jam_akhir").value;
         // var update2 = document.getElementById("total").innerHTML;
@@ -285,19 +318,39 @@
         document.getElementById("awal").value = akhir;
         document.getElementById("akhir").value = null;
         document.getElementById("jam_awal").value = jamAkhir;
-        document.getElementById("jam_akhir").value = null;
+
+        var jamAkhir = document.getElementById("jam_akhir").value;
+        var jamAkhirArray = jamAkhir.split(":");
+
+        var jamAkhirBaru = parseInt(jamAkhirArray[0]) + 1;
+        if (jamAkhirBaru === 24) {
+          jamAkhirBaru = 0;
+          jamAkhirArray[0] = "00";
+        } else {
+          jamAkhirArray[0] = jamAkhirBaru.toString().padStart(2, "0");
+        }
+
+        var jamAkhirString = jamAkhirArray.join(":");
+
+        document.getElementById("jam_akhir").value = jamAkhirString;
+
+        document.getElementById("receh").value = null;
+
 
         
       });
 
+      // meriset 
       $("#delete").on("click", function (e) {
         e.preventDefault();
         if (confirm("Hapus Semua Data?")) {
-          lm330 = filterTransaksi = [];
-          localStorage.removeItem("lm330");
-          $(".result").html(showData(lm330));
+          line2 = filterTransaksi = [];
+          localStorage.removeItem("line2");
+          $(".result").html(showData(line2));
         }
       });
+
+      // 
       $("#wa").on("click", function () {
         var title = $('#title').text();
         var line = $('#line_running').text();
@@ -306,22 +359,25 @@
         var no_hp= $('#no_hp').val();
         var sku = $('#sku_running').text();
         var hasilProduksi = "";
-        $('p#hasil_produksi').each(function() {
-          hasilProduksi += $(this).text() + "%0a";
+        $('.hasil_produksi').each(function() {
+          var text = $(this).text().trim();
+          var withoutDataAfterPercentage = text.substring(0, text.indexOf('%') + 1); // Mengambil teks hingga tanda '%' termasuk '%'
+          hasilProduksi += withoutDataAfterPercentage + "%0a";
         });
+
         var url =  "https://wa.me/+62"+no_hp+"?text=" 
         +"*"+title+"*"+"%0a" 
         +"_*"+line+"*_"+"%0a"
         +"*"+tgl_produksi+"*"+"%0a"+"%0a"  
 
-        +"_"+ sku +"_" +  total_produksi + "%0a"+"%0a" 
+        +"_"+ sku +"_"  + total_produksi + "%0a"+"%0a" 
         +hasilProduksi 
 
         window.open(url, "_blank").focus();
       });
 
 
-    });
+     });
 
 
   </script>
