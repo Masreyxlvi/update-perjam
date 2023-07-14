@@ -62,14 +62,14 @@
                 <hr>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-1">
-                    <input type="time" class="form-control" id="jam_awal" name="jam_awal" required
+                    <input type="time" class="form-control" id="jam_awal" name="jam_awal" 
                       placeholder="Enter Name here" />
                     <label for="jam_awal">Dari Jam </label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-1">
-                    <input type="time" class="form-control" id="jam_akhir" name="jam_akhir" required
+                    <input type="time" class="form-control" id="jam_akhir" name="jam_akhir" 
                       placeholder="Enter Name here" />
                     <label for="jam_akhir">Sampai Jam </label>
                   </div>
@@ -77,14 +77,14 @@
                 <hr>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-1">
-                    <input type="number" class="form-control" id="awal" name="awal" required
+                    <input type="number" class="form-control" id="awal" name="awal" 
                       placeholder="Enter Name here" />
                     <label for="awal">No Pallet Awal </label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="akhir" name="akhir" required
+                    <input type="number" class="form-control" id="akhir" name="akhir" 
                       placeholder="Enter Name here" />
                     <label for="akhir">No Pallet Akhir </label>
                   </div>
@@ -95,6 +95,16 @@
                     <input type="number" class="form-control" id="receh" name="receh"
                       placeholder="Enter Name here" />
                     <label for="receh">Receh </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="buffer" name="buffer"
+                      placeholder="Enter Name here" />
+                    <label for="buffer">Bufferan </label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="note" name="note"
+                      placeholder="Enter Name here" />
+                    <label for="note">Note </label>
                   </div>
                 </div>
             </div>
@@ -234,7 +244,7 @@
       }
 
       row += `<br/>`;
-      row += `<i id="sku_running">le Minerale 600ml ${sku}</i>`;
+      row += `<i id="sku_running">Le Minerale 600ml ${sku}</i>`;
       row += `<hr/>`;
   
       // row += `<br/>`;
@@ -249,7 +259,8 @@
         persen = Math.round((jumlahCar / 1666) * 100);
         total += Number(jumlahCar);
         var formatJumlahCar = jumlahCar.toLocaleString("en-US").replace(',','.');
-         formatTotal = total.toLocaleString("en-US").replace(',','.');
+        formatTotal = total.toLocaleString("en-US").replace(',','.');
+  
 
         var jamAwal = item.jam_awal.replace(':', '.'); // Mengganti ":" dengan "."
         var jamAkhir = item.jam_akhir.replace(':', '.'); // Mengganti ":" dengan "."
@@ -262,9 +273,15 @@
           </p>`;
 
       });
+      var buffer = $('#buffer').val();
+      if(buffer){
+          var totalBuffer = formatTotal + Number(buffer)
+          row += `<b id='total_produksi'> *${totalBuffer} car*</b>`
+        }else{
+          row += `<b id='total_produksi'> *${formatTotal} car*</b>`
+          row.replace('${total}', total);  
 
-      row += `<b id='total_produksi'> *${formatTotal} car*</b>`
-      row.replace('${total}', total);
+        }
 
       return row;
     }

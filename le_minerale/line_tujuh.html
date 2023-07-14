@@ -56,6 +56,7 @@
                     <select class="form-select sku" id="sku" name="sku">
                       <option value="Promo">Promo</option>
                       <option value="Reguler">Reguler</option>
+                      <option value="Reguler_GT">Reguler GT</option>
                       <option value="Phill_Reguler">Phill Reguler</option>
                       <option value="Phill_Promo">Phill Promo</option>
                     </select>
@@ -220,6 +221,9 @@
       if(sku == "Phill_Reguler"){
         sku = "Phill Reguler"
       }
+      if(sku == "Reguler_GT"){
+        sku = "Reguler GT"
+      }
       var tgl = "";   
       if (line7.length == 0) {
         return (row = `<h1>
@@ -245,7 +249,7 @@
       }
 
       row += `<br/>`;
-      row += `<i id="sku_running">le Minerale ${produk} ${sku}</i>`;
+      row += `<i id="sku_running">Le Minerale ${produk} ${sku}</i>`;
       row += `<hr/>`;
   
       // row += `<br/>`;
@@ -266,7 +270,11 @@
               jumlahCar = hasil * 40;
             }   
         }
+        if(produk == "1500ml"){
+          persen = Math.round((jumlahCar / 2083) * 100);
+        }else{
           persen = Math.round((jumlahCar / 1666) * 100);
+        }
           total += Number(jumlahCar);
           var formatJumlahCar = jumlahCar.toLocaleString("en-US").replace(',','.');
            formatTotal = total.toLocaleString("en-US").replace(',','.');
@@ -305,7 +313,7 @@
     function updateTotal() {
       var newTotal = 0;
       var jenis = $('#produk').val();
-      if(jenis == '330ml'){
+      if(jenis == '1500ml'){
         line7.forEach(function (item) {
           var hasil = item['akhir'] - item['awal'];
           var jumlahCar = item['receh'] ? (hasil * 33) + Number(item['receh']) : hasil * 33;
