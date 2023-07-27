@@ -97,6 +97,27 @@
                     <label for="receh">Receh </label>
                   </div>
                 </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="buffer" name="buffer"
+                      placeholder="Enter Name here" />
+                    <label for="buffer">Buffer </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="minus" name="minus"
+                      placeholder="Enter Name here" />
+                    <label for="minus">Minus </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="note" name="note"
+                      placeholder="Enter Name here" />
+                    <label for="note">Note </label>
+                  </div>
+                </div>
             </div>
             <div class="col-12">
               <div class="d-md-flex align-items-center mt-3">
@@ -239,6 +260,8 @@
   
       // row += `<br/>`;
       var formatTotal = ""
+      var buffer = $("#buffer");
+      var minus = $("#minus");
       line6.forEach(function (item, index) {
         hasil = item['akhir'] - item['awal'];
         if(item['receh']){
@@ -263,7 +286,23 @@
 
       });
 
-      row += `<b id='total_produksi'> *${formatTotal} car*</b>`
+      var note = $("#note").val();
+      if(minus != 0){
+        totalAkhir = Number(formatTotal) - Number(minus);
+        totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
+        row += `<br/>`
+        row += `<b id='noted'> *Note: ${note} = ${minus} car*</b>`
+      }else if(buffer != 0){
+        totalAkhir = Number(formatTotal) + Number(buffer);
+        totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
+        row += `<br/>`
+        row += `<b id='noted'> *Note: ${note} = ${buffer} car*</b>`
+      }else{
+        row += `<b id='total_produksi'> *${formatTotal} car*</b>`
+        
+      }
       row.replace('${total}', total);
 
       return row;
@@ -356,6 +395,7 @@
         var line = $('#line_running').text();
         var tgl_produksi= $('#tgl_produksi').text();
         var total_produksi= $('#total_produksi').text();
+        var noted= $('#noted').text();
         var no_hp= $('#no_hp').val();
         var sku = $('#sku_running').text();
         var hasilProduksi = "";
@@ -371,7 +411,8 @@
         +"*"+tgl_produksi+"*"+"%0a"+"%0a"  
 
         +"_"+ sku +"_"  + total_produksi + "%0a"+"%0a" 
-        +hasilProduksi 
+        +hasilProduksi+ "%0a"
+        +noted
 
         window.open(url, "_blank").focus();
       });
