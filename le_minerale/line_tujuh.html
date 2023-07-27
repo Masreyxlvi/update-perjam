@@ -321,13 +321,13 @@
         totalAkhir.toLocaleString("en-US").replace(',','.');
         row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
         row += `<br/>`
-        row += `<b id='noted'> *${note} = ${minus} car*</b>`
+        row += `<b id='noted'> *Note: ${note} = ${minus} car*</b>`
       }else if(buffer != 0){
         totalAkhir = Number(formatTotal) + Number(buffer);
         totalAkhir.toLocaleString("en-US").replace(',','.');
         row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
         row += `<br/>`
-        row += `<b id='noted'> *${note} = ${buffer} car*</b>`
+        row += `<b id='noted'> *Note: ${note} = ${buffer} car*</b>`
       }else{
         row += `<b id='total_produksi'> *${formatTotal} car*</b>`
         
@@ -457,7 +457,7 @@
         +"*"+tgl_produksi+"*"+"%0a"+"%0a"  
 
         +"_"+ sku +"_"  + total_produksi + "%0a"+"%0a" 
-        +hasilProduksi + "%0a"+"%0a"
+        +hasilProduksi + "%0a"
         +noted
 
         window.open(url, "_blank").focus();
