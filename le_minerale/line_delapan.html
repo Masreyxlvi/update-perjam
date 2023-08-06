@@ -92,6 +92,27 @@
                 <hr>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="buffer" name="buffer"
+                      placeholder="Enter Name here" />
+                    <label for="buffer">Buffer </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="minus" name="minus"
+                      placeholder="Enter Name here" />
+                    <label for="minus">Minus </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="note" name="note"
+                      placeholder="Enter Name here" />
+                    <label for="note">Note </label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-1">
+                  <div class="form-floating mb-3">
                     <input type="number" class="form-control" id="receh" name="receh"
                       placeholder="Enter Name here" />
                     <label for="receh">Receh </label>
@@ -226,7 +247,7 @@
         const tanggal = new Date(tanggalInput.value);
         const tanggalFormat = tanggal.toLocaleDateString('id-ID', options);
         row += `<h4 id="title">Hasil Produksi Shift ${shift}</h4>`;
-        row += `<h4 id="line_running"><i>LINE 6</i></h4>`;
+        row += `<h4 id="line_running"><i>LINE 8</i></h4>`;
         row += `<h4 id="tgl_produksi">${tanggalFormat}</h4>`;
       } else {
         row += `<h4>Hasil Produksi Shift ${shift}</h4>`;
@@ -239,6 +260,8 @@
   
       // row += `<br/>`;
       var formatTotal = ""
+      var buffer = $("#buffer").val();
+      var minus = $("#minus").val();
       line8.forEach(function (item, index) {
         hasil = item['akhir'] - item['awal'];
         if(item['receh']){
@@ -262,8 +285,26 @@
           </p>`;
 
       });
-
-      row += `<b id='total_produksi'> *${formatTotal} car*</b>`
+      var note = $("#note").val();
+      var bufferNumber = Number(buffer); // Pastikan buffer juga berupa angka
+      var minusNumber = Number(minus); // Pastikan buffer juga berupa angka
+      if(minus != 0){
+        totalAkhir = total - minusNumber;
+        var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
+        row += `<br/>`
+        row += `<b id='noted'> *Note: ${note} = ${minusNumber} car*</b>`
+      }else if(buffer != 0){
+        totalAkhir = total + bufferNumber;
+        var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
+        row += `<br/>`
+        row += `<b id='noted'> *Note: ${note} = ${bufferNumber} car*</b>`
+      }else{
+        row += `<b id='total_produksi'> *${formatTotal} car*</b>`
+        
+      }
+     
       row.replace('${total}', total);
 
       return row;

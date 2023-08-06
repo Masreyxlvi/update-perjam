@@ -206,8 +206,9 @@
     crossorigin="anonymous"></script>
   <script>
     // method
+    
     function insert() {
-        const form = $("#formTransaksi").serializeArray();
+        const form = $("#formTransaksi").serializeArray(); 
         let line7 = JSON.parse(localStorage.getItem("line7")) || [];
 
         let newData = {};   
@@ -316,16 +317,18 @@
 
       });
       var note = $("#note").val();
+      var bufferNumber = Number(buffer); // Pastikan buffer juga berupa angka
+      var minusNumber = Number(minus); // Pastikan buffer juga berupa angka
       if(minus != 0){
-        totalAkhir = Number(formatTotal) - Number(minus);
-        totalAkhir.toLocaleString("en-US").replace(',','.');
-        row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
+        totalAkhir = total - minusNumber;
+        var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
         row += `<br/>`
         row += `<b id='noted'> *Note: ${note} = ${minus} car*</b>`
       }else if(buffer != 0){
-        totalAkhir = Number(formatTotal) + Number(buffer);
-        totalAkhir.toLocaleString("en-US").replace(',','.');
-        row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
+        totalAkhir = total + bufferNumber;
+        var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
         row += `<br/>`
         row += `<b id='noted'> *Note: ${note} = ${buffer} car*</b>`
       }else{
@@ -360,10 +363,10 @@
           var jumlahCar = item['receh'] ? (hasil * 33) + Number(item['receh']) : hasil * 33;
           newTotal += jumlahCar;
         });
-  
+   
         var totalElement = document.getElementById('total_produksi');
         if (totalElement) {
-          totalElement.textContent = ` *${newTotal.toLocaleString('en-US')} car*`;
+          totalElement.textContent = ` *${newTotal.toLocaleString('en-US').replace(',','.')} car*`;
         }
         
       }else{
@@ -375,7 +378,7 @@
   
         var totalElement = document.getElementById('total_produksi');
         if (totalElement) {
-          totalElement.textContent = ` *${newTotal.toLocaleString('en-US')} car*`;
+          totalElement.textContent = ` *${newTotal.toLocaleString('en-US').replace(',','.')} car*`;
         }
 
       }

@@ -99,21 +99,21 @@
                 </div>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="buffer" name="buffer"
+                    <input type="number" class="form-control" id="buffer_line6" name="buffer"
                       placeholder="Enter Name here" />
                     <label for="buffer">Buffer </label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="minus" name="minus"
+                    <input type="number" class="form-control" id="minus_line6" name="minus"
                       placeholder="Enter Name here" />
                     <label for="minus">Minus </label>
                   </div>
                 </div>
                 <div class="col-md-6 mb-1">
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="note" name="note"
+                    <input type="text" class="form-control" id="note_line6" name="note"
                       placeholder="Enter Name here" />
                     <label for="note">Note </label>
                   </div>
@@ -260,8 +260,8 @@
   
       // row += `<br/>`;
       var formatTotal = ""
-      var buffer = $("#buffer");
-      var minus = $("#minus");
+      var buffer = $("#buffer_line6").val();
+      var minus = $("#minus_line6").val();
       line6.forEach(function (item, index) {
         hasil = item['akhir'] - item['awal'];
         if(item['receh']){
@@ -285,20 +285,21 @@
           </p>`;
 
       });
-
-      var note = $("#note").val();
+      var note = $("#note_line6").val();
+      var bufferNumber = Number(buffer); // Pastikan buffer juga berupa angka
+      var minusNumber = Number(minus); // Pastikan buffer juga berupa angka
       if(minus != 0){
-        totalAkhir = Number(formatTotal) - Number(minus);
-        totalAkhir.toLocaleString("en-US").replace(',','.');
-        row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
+        totalAkhir = total - minusNumber;
+        var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
         row += `<br/>`
-        row += `<b id='noted'> *Note: ${note} = ${minus} car*</b>`
+        row += `<b id='noted'> *Note: ${note} = ${minusNumber} car*</b>`
       }else if(buffer != 0){
-        totalAkhir = Number(formatTotal) + Number(buffer);
-        totalAkhir.toLocaleString("en-US").replace(',','.');
-        row += `<b id='total_produksi'> *${totalAkhir} car*</b>`
+        totalAkhir = total + bufferNumber;
+        var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
+        row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
         row += `<br/>`
-        row += `<b id='noted'> *Note: ${note} = ${buffer} car*</b>`
+        row += `<b id='noted'> *Note: ${note} = ${bufferNumber} car*</b>`
       }else{
         row += `<b id='total_produksi'> *${formatTotal} car*</b>`
         
