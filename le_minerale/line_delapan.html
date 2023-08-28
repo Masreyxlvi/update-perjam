@@ -293,16 +293,17 @@
         var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
         row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
         row += `<br/>`
-        row += `<b id='noted'> *Note: ${note} = ${minusNumber} car*</b>`
+        row += `<b id='noted'>*${note} = ${minusNumber} car*</b>`
       }else if(buffer != 0){
         totalAkhir = total + bufferNumber;
         var formatedTotal = totalAkhir.toLocaleString("en-US").replace(',','.');
         row += `<b id='total_produksi'> *${formatedTotal} car*</b>`
         row += `<br/>`
-        row += `<b id='noted'> *Note: ${note} = ${bufferNumber} car*</b>`
+        row += `<b id='noted'>*${note} = ${bufferNumber} car*</b>`
       }else{
         row += `<b id='total_produksi'> *${formatTotal} car*</b>`
-        
+        row += `<br/>`
+        row += `<b id='noted'>*${note}*</b>`    
       }
      
       row.replace('${total}', total);
